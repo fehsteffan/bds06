@@ -1,9 +1,11 @@
 package com.devsuperior.movieflix.resources;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +16,22 @@ import com.devsuperior.movieflix.entities.dto.ReviewDTO;
 import com.devsuperior.movieflix.services.ReviewService;
 
 @RestController
-@RequestMapping(name = "/reviews")
+@RequestMapping(value = "/reviews")
 public class ReviewResource {
 	
 	
 	@Autowired
 	private ReviewService service;
+	
+	
+	
+	
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<List<ReviewDTO>> findAll() {
+		List<ReviewDTO> list = service.findAll();	
+		return ResponseEntity.ok().body(list);
+	}
+	
 	
 	
 	

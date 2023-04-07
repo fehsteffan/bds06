@@ -19,17 +19,21 @@ public class MovieService {
 	@Autowired
 	private MovieRepository repository;	
 	
+
+	
 	
 	
 	
 	
 	@Transactional(readOnly = true)	
-	public Page<MovieDTO> paged (Pageable pageable) {		
+	public Page<MovieDTO> pagedAll(Pageable pageable) {				
+			
 		Page<Movie> page = repository.findAll(pageable);  
 		return page.map(x -> new MovieDTO(x));			
 		
 	}	
 	
+	@Transactional(readOnly = true)	
 	public MovieDTO findById(Long id) {
 		Optional<Movie> obj = repository.findById(id);
 		Movie entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found "));

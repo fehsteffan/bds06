@@ -38,6 +38,11 @@ public class Movie implements Serializable {
 	@OneToMany(mappedBy = "movie")
 	private List<Review> reviews = new ArrayList<>();
 	
+	
+	
+	
+	
+	
 	public Movie() {
 		
 	}	
