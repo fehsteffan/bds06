@@ -20,17 +20,15 @@ public class GenreService {
 	@Autowired
 	private GenreRepository repository;
 	
-	@Autowired
-	private AuthService authService;
+	
 	
 	
 	@Transactional(readOnly = true)
-	public List<GenreDTO> findAll() {
-		
+	public List<GenreDTO> findAll() {		
 		List<Genre> list = repository.findAll();
 		return list.stream().map(x -> new GenreDTO(x)).collect(Collectors.toList());
 		
 				
-	}
+	}	 
 	
 }

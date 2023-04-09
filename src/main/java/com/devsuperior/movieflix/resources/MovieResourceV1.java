@@ -8,24 +8,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devsuperior.movieflix.entities.dto.GenreDTO;
-import com.devsuperior.movieflix.services.GenreService;
+import com.devsuperior.movieflix.entities.dto.MovieReviewDTO;
+import com.devsuperior.movieflix.services.MovieService;
 
 @RestController
-@RequestMapping(value = "/genres")
-public class GenreResource {
-
+@RequestMapping(value = "v1/movies")
+public class MovieResourceV1 {
+	
 	
 	@Autowired
-	private GenreService service;
+	private MovieService service;		
+	
 	
 	
 	@GetMapping
-	public ResponseEntity<List<GenreDTO>> findAll() {
-		List<GenreDTO> list = service.findAll();
+	public ResponseEntity<List<MovieReviewDTO>> findAllMovieGenre( ) {
+		List<MovieReviewDTO> list = service.findAllMovieGenre();		
 		return ResponseEntity.ok().body(list);
-		
-		
-		
-	}	
+	}		
+	
+
 }

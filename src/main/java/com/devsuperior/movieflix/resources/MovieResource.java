@@ -7,11 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.movieflix.entities.dto.MovieDTO;
-import com.devsuperior.movieflix.services.GenreService;
+import com.devsuperior.movieflix.entities.dto.MovieDTO2;
 import com.devsuperior.movieflix.services.MovieService;
 
 @RestController
@@ -20,15 +19,13 @@ public class MovieResource {
 	
 	
 	@Autowired
-	private MovieService service;
-	
-	
+	private MovieService service;		
 	
 	
 	
 	@GetMapping
-	public ResponseEntity<Page<MovieDTO>> findAll(Pageable pageable) {
-		Page<MovieDTO> list = service.pagedAll(pageable);		
+	public ResponseEntity<Page<MovieDTO2>> pagedAll(Pageable pageable) {
+		Page<MovieDTO2> list = service.pagedAllpage(pageable);		
 		return ResponseEntity.ok().body(list);
 	}
 	

@@ -4,30 +4,27 @@ import java.io.Serializable;
 
 import com.devsuperior.movieflix.entities.Review;
 
-public class ReviewDTO implements Serializable {	
+public class MovieReviewDTO implements Serializable {	
 	private static final long serialVersionUID = 1L;
 	
 	
 	private Long id;
 	private String text;
 	private Long movieId;
-	private UserDTO user;
-	
-		
+	private UserDTO user;	
 	
 	
 	
-	
-	public ReviewDTO() {		
+	public MovieReviewDTO() {		
 	}
 
-	public ReviewDTO(Long id, String text,Long movieId) {		
+	public MovieReviewDTO(Long id, String text,Long movieId) {		
 		this.id = id;
 		this.text = text;				
 		
 	}	
 	
-	public ReviewDTO(Review entity) {		
+	public MovieReviewDTO(Review entity) {		
 		id = entity.getId();
 		text = entity.getText();
 		movieId = entity.getMovie().getId();
