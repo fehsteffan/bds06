@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,11 +25,6 @@ public class ReviewResource {
 	
 	
 	
-	
-	
-	
-	
-	@PreAuthorize("hasAnyRole('MEMBER')")
 	@PostMapping
 	public ResponseEntity<ReviewDTO> insert(@Valid  @RequestBody ReviewDTO dto){
 		dto = service.insert(dto);
