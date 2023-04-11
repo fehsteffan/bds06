@@ -24,8 +24,8 @@ public class MovieResource {
 	
 	
 	@GetMapping
-	public ResponseEntity<Page<MovieDTO2>> pagedAll(Pageable pageable) {
-		Page<MovieDTO2> list = service.pagedAllpage(pageable);		
+	public ResponseEntity<Page<MovieDTO2>> pagedAll(Long genreId, Pageable pageable) {		
+		Page<MovieDTO2> list = service.pagedAllpage(genreId, pageable);		
 		return ResponseEntity.ok().body(list);
 	}
 	
