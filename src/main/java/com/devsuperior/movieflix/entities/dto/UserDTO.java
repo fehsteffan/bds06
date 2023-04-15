@@ -1,14 +1,10 @@
 package com.devsuperior.movieflix.entities.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-import com.devsuperior.movieflix.entities.Review;
 import com.devsuperior.movieflix.entities.User;
 
 public class UserDTO implements Serializable  {	
@@ -24,7 +20,7 @@ public class UserDTO implements Serializable  {
 	@Email(message = "Favor entrar com email valido")
 	private String email;
 	
-	private List<ReviewDTO> reviews = new ArrayList<>();
+	
 	
 	
 	public UserDTO() {		
@@ -46,10 +42,7 @@ public class UserDTO implements Serializable  {
 	}
 
 	
-	public UserDTO(User entity, Set<Review> reviews) {
-		this(entity);
-		reviews.forEach(cat -> this.reviews.add(new ReviewDTO(cat)));
-	}
+	
 	
 
 	public Long getId() {
@@ -79,16 +72,6 @@ public class UserDTO implements Serializable  {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-
-	public List<ReviewDTO> getReviews() {
-		return reviews;
-	}
-
-
-	public void setReviews(List<ReviewDTO> reviews) {
-		this.reviews = reviews;
 	}		
 	
 }

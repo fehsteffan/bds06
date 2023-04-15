@@ -57,7 +57,7 @@ public class MovieService {
 		
 		
 		Genre genre =  genreRepository.getOne(genreId);			
-		Page<Movie> page = repository.find(genre,pageable);  
+		Page<Movie> page = repository.findAll(pageable);    
 		return page.map(x -> new MovieDTO2(x));			
 		
 	}	
