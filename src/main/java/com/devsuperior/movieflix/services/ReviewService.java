@@ -27,11 +27,6 @@ public class ReviewService {
 	
 	
 	
-	
-	
-	
-	
-	
 		@Transactional
 		public ReviewDTO insert(ReviewDTO dto) {
 		
