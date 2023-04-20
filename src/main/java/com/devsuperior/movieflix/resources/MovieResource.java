@@ -22,13 +22,19 @@ public class MovieResource {
 	private MovieService service;		
 	
 	
-	
-	@GetMapping
-	public ResponseEntity<Page<MovieDTO2>> pagedAll(Long genreId, Pageable pageable) {		
+	@GetMapping(value = "/genreId/{id}")
+	public ResponseEntity<Page<MovieDTO2>> pagedAllpage(@PathVariable Long genreId, Pageable pageable) {		
 		Page<MovieDTO2> list = service.pagedAllpage(genreId, pageable);		
 		return ResponseEntity.ok().body(list);
 	}
 	
+	
+	@GetMapping
+	public ResponseEntity<Page<MovieDTO2>> pagedAll(Pageable pageable) {		
+		Page<MovieDTO2> list = service.pagedAll(pageable);		
+		return ResponseEntity.ok().body(list);
+	}
+		
 	
 	
 	@GetMapping(value = "/{id}")
@@ -36,8 +42,7 @@ public class MovieResource {
 		MovieDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 		
-		
-		
+			
 	}	
 
 }

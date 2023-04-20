@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.devsuperior.movieflix.entities.Genre;
 import com.devsuperior.movieflix.entities.Movie;
 import com.devsuperior.movieflix.entities.Review;
-import com.devsuperior.movieflix.entities.User;
 import com.devsuperior.movieflix.entities.dto.MovieDTO;
 import com.devsuperior.movieflix.entities.dto.MovieDTO2;
 import com.devsuperior.movieflix.entities.dto.MovieReviewDTO;
@@ -35,8 +34,7 @@ public class MovieService {
 	@Autowired
 	private GenreRepository genreRepository;
 	
-	@Autowired
-	private AuthService authService;
+	
 	
 	
 	
@@ -59,12 +57,20 @@ public class MovieService {
 	@Transactional(readOnly = true)	
 	public Page<MovieDTO2> pagedAllpage(Long genreId, Pageable pageable) {	
 		
-		Genre genre = (genreId == 0) ? null : genreRepository.getOne(genreId);					
+		Genre genre = (genreId == 0) ? null :  genreRepository.getOne(genreId);					
 		Page<Movie> page = repository.find(genre, pageable); 
 		return page.map(x -> new MovieDTO2(x));			
 		
 	}	
 	
+	@Transactional(readOnly = true)	
+	public Page<MovieDTO2> pagedAll(Pageable pageable) {						
+		Page<Movie> page = repository.findAll(pageable); 
+		return page.map(x -> new MovieDTO2(x));			
+		
+	}	
+	
+		
 	@Transactional(readOnly = true)	
 	public MovieDTO findById(Long id) {		
 		
