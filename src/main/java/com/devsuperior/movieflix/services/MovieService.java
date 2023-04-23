@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +28,7 @@ import com.devsuperior.movieflix.services.exceptions.ResourceNotFoundException;
 public class MovieService {
 	
 	@Autowired
-	private MovieRepository repository;	
+	private MovieRepository movieRepository;	
 	
 	@Autowired
 	private ReviewRepository reviewRepository;
@@ -34,8 +36,8 @@ public class MovieService {
 	@Autowired
 	private GenreRepository genreRepository;
 	
-	
-	
+	@Autowired
+	private AuthService  authService;
 	
 	
 
@@ -44,10 +46,28 @@ public class MovieService {
 		List<Review> list = reviewRepository.findAll();
 		return list.stream().map(x -> new ReviewDTO(x)).collect(Collectors.toList());
 	}
+	
+	
+	
+	@Transactional(readOnly = true)
+	public List<MovieReviewDTO> findByMovie(Long movieId) {	
+		
+		try {
+		Movie movie = movieRepository.getOne(movieId);
+		List<Review> list = reviewRepository.findByMovie(movie);
+		return list.stream().map(x -> new MovieReviewDTO(x)).collect(Collectors.toList());
+		}
+		catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not found " + movieId);
+		}
+	}
+	
+	
+	
+	
 			
 	@Transactional(readOnly = true)
 	public List<MovieReviewDTO> findAllMovieGenre() {		
-		
 		List<Review> list = reviewRepository.findAll();
 		return list.stream().map(x -> new MovieReviewDTO(x)).collect(Collectors.toList());
 	}
@@ -55,28 +75,30 @@ public class MovieService {
 	
 	
 	@Transactional(readOnly = true)	
-	public Page<MovieDTO2> pagedAllpage(Long genreId, Pageable pageable) {	
-		
-		Genre genre = (genreId == 0) ? null :  genreRepository.getOne(genreId);					
-		Page<Movie> page = repository.find(genre, pageable); 
+	public Page<MovieDTO2> pagedAllpage(Long genreId, Pageable pageable) {		
+				
+		Genre genre = (genreId == 0) ? null :  genreRepository.getOne(genreId);			
+		Page<Movie> page = movieRepository.find(genre,   pageable); 		
 		return page.map(x -> new MovieDTO2(x));			
 		
 	}	
+	
+	
 	
 	@Transactional(readOnly = true)	
 	public Page<MovieDTO2> pagedAll(Pageable pageable) {						
-		Page<Movie> page = repository.findAll(pageable); 
+		Page<Movie> page = movieRepository.findAll(pageable); 
+		
 		return page.map(x -> new MovieDTO2(x));			
 		
 	}	
 	
 		
 	@Transactional(readOnly = true)	
-	public MovieDTO findById(Long id) {		
+	public MovieDTO findById(Long id) {			
+		Optional<Movie> obj = movieRepository.findById(id);		
 		
-		Optional<Movie> obj = repository.findById(id);		
-		
-		Movie entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+		Movie entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));		
 		return new MovieDTO(entity);
 		
 	}

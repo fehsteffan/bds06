@@ -17,15 +17,14 @@ public class MovieResourceV1 {
 	
 	
 	@Autowired
-	private MovieService service;		
+	private MovieService service;
 	
 	
 	
 	@GetMapping
-	public ResponseEntity<List<MovieReviewDTO>> findAllMovieGenre( ) {
-		List<MovieReviewDTO> list = service.findAllMovieGenre();		
+	public ResponseEntity<List<MovieReviewDTO>> findByMovie() {		
+		List<MovieReviewDTO> list = service.findAllMovieGenre();
 		return ResponseEntity.ok().body(list);
-	}		
-	
+	}	
 
 }

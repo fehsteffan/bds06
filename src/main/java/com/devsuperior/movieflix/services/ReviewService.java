@@ -35,8 +35,7 @@ public class ReviewService {
 			
 	try {	
 		Review entity = new Review();
-		entity.setText(dto.getText());
-		
+		entity.setText(dto.getText());		
 		entity.setMovie(movieRepository.getOne(dto.getMovieId()));	
 		entity.setUser(authService.authenticated());		
 		entity = repository.save(entity);

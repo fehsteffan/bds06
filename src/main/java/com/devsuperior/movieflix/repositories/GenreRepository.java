@@ -7,5 +7,7 @@ import com.devsuperior.movieflix.entities.Genre;
 public interface GenreRepository extends JpaRepository<Genre, Long> {
 	
 	
+	
+	
 
 }

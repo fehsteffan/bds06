@@ -18,7 +18,7 @@ public class MovieReviewDTO implements Serializable {
 	public MovieReviewDTO() {		
 	}
 
-	public MovieReviewDTO(Long id, String text,Long movieId) {		
+	public MovieReviewDTO(Long id, String text, Long movieId) {		
 		this.id = id;
 		this.text = text;				
 		
