@@ -33,7 +33,7 @@ public class AuthService {
 	
 	public void validateSelfOrMember(Long userId) {
 		User user = authenticated();
-		if(!user.getId().equals(userId)) {
+		if(user.getId().equals(userId) && user.hasHole("ROLE_MEMBER")) {
 			throw new ForbiddenException("Access denied");
 		}		
 		

@@ -32,13 +32,18 @@ public class ReviewService {
 		
 		User user = authService.authenticated();
 		user.getReviews();
+		
 			
 	try {	
 		Review entity = new Review();
-		entity.setText(dto.getText());		
+				
 		entity.setMovie(movieRepository.getOne(dto.getMovieId()));	
-		entity.setUser(authService.authenticated());		
+		entity.setUser(user);		
+		entity.setText(dto.getText());
+		
+		
 		entity = repository.save(entity);
+		
 		return new ReviewDTO(entity);		
 		
 		

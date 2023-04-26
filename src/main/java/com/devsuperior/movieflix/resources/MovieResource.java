@@ -1,7 +1,5 @@
 package com.devsuperior.movieflix.resources;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,7 +41,7 @@ public class MovieResource {
 	
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<MovieDTO> findById(@Valid  @PathVariable Long id) {
+	public ResponseEntity<MovieDTO> findById(@PathVariable Long id) {
 		MovieDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 		
