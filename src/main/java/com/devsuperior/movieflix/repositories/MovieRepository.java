@@ -20,22 +20,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 	Page<Movie> find(Genre genre, Pageable pageable);
 	
 	
-	
 		
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	
-
-}
+	}

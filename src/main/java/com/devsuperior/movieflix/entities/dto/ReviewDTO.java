@@ -13,10 +13,6 @@ public class ReviewDTO implements Serializable {
 	private Long movieId;
 	private UserDTO user;
 	
-		
-	
-	
-	
 	
 	public ReviewDTO() {		
 	}

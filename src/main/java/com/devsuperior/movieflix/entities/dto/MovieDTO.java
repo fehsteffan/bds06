@@ -20,20 +20,7 @@ public class MovieDTO implements Serializable {
 	
 	public MovieDTO() {	
 	}
-
-
-	public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis) {		
-		this.id = id;
-		this.title = title;
-		this.subTitle = subTitle;
-		this.year = year;
-		this.imgUrl = imgUrl;
-		this.synopsis = synopsis;
 		
-		
-		
-	}
-	
 	
 	public MovieDTO(Movie entity) {		
 		id = entity.getId();
